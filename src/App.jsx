@@ -1,13 +1,12 @@
-import Header from '../components/Header'
-import './App.css'
+import Header from "../components/Header";
+import "./App.css";
 
 function App() {
-
   return (
     <div>
-      <Header isAllowed/>
+      <Header isAllowed />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
