@@ -1,0 +1,16 @@
+.category{
+    padding: 2em;
+}
+
+.category > ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.category > ul > li {
+    width: 10em;
+}
+
+.active{
+    background-color: aqua;
+}

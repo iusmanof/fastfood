@@ -1,20 +1,21 @@
 // import React from "react"
 
 import { useState } from "react";
+import '../style/Categories.scss';
 
 const Categories = () => {
-
+  const [active, setActive] = useState('pizza')
   return (
     <>
-      <h2>
+      <div className="category">
         <ul>
-          <li>Link 1</li>
-          <li>Link 2</li>
-          <li>Link 3</li>
-          <li>Link 4</li>
-          <li>Link 5</li>
+          <li className={active === "pizza" ? 'active' : ''} onClick={() => setActive('pizza')}>Pizzas</li>
+          <li className={active === "burger" ? 'active' : ''} onClick={() => setActive('burger')}>Burgers</li>
+          <li className={active === "drink" ? 'active' : ''} onClick={() => setActive('drink')}> Drinks</li>
+          <li className={active === "fry" ? 'active' : ''} onClick={() => setActive('fry')}>Frys</li>
+          <li className={active === "popcorn" ? 'active' : ''} onClick={() => setActive('popcorn')}>PopCorns</li>
         </ul>
-      </h2>
+      </div>
     </>
   );
 };
