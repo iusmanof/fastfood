@@ -4,11 +4,11 @@
 
 .category > ul{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .category > ul > li {
-    width: 10em;
+    padding: 1em;
 }
 
 .active{

@@ -1,0 +1,15 @@
+{
+    "fast-food": [
+      { "id": "1", "title": "Burger1", "price": 10 , "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826"},
+      { "id": "2", "title": "Pizza", "price": 23, "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826" },
+      { "id": "2", "title": "Coca-cola", "price": 4, "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826" },
+      { "id": "2", "title": "Burger2", "price": 11, "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826" },
+      { "id": "2", "title": "Fry1", "price": 3, "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826" },
+      { "id": "2", "title": "Chicken1", "price": 13, "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826" },
+      { "id": "2", "title": "popcorn1", "price": 5, "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826"}
+    ],
+    "comments": [
+      { "id": "1", "text": "a comment about post 1", "postId": "1" },
+      { "id": "2", "text": "another comment about post 1", "postId": "1" }
+    ]
+  }
