@@ -22,7 +22,7 @@ function App() {
 
       <FastFoodBlock>
         {foodState.map((i) => (
-          <FastFoodItem title={i.title} price={i.price} imgLink={i.imgLink} />
+          <FastFoodItem {...i} />
         ))}
       </FastFoodBlock>
     </div>

@@ -1,0 +1,29 @@
+.sorting-label {
+    padding: 10px;
+    cursor: pointer;
+    width: 20em;
+}
+
+.sorting-label:hover {
+    background-color: antiquewhite;
+
+}
+
+.sorting-list {
+    position: absolute;
+    top: 10em; 
+    left: 1em;
+    border: 1px solid royalblue;
+    background-color: coral;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.sorting-list li {
+    padding: 10px;
+}
+
+.sorting-list li:hover{
+    background-color: antiquewhite;
+}
