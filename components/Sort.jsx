@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../style/Sort.scss'
 
 function Sort(){
-    const [isOpen, setIsOpen ] = useState(false);
+    const sortingList = ['По популярности', 'Цене (по возрастанию)', 'Цене (по убыванию)', 'А - Я', 'Я - А']
+
+    const [ isOpenSorting, setIsOpenSorting ] = useState(false);
+    const [ sortingStatus, setSortingStatus ] = useState(0)
+    
+    useEffect(()=> {
+        console.log(sortingList[sortingStatus])
+    }, [sortingStatus])
+
     return <>
-        <div onClick={() => setIsOpen(!isOpen)} className="sorting-label">Сортировка по:</div>
-        {isOpen && (
+        <div onClick={() => setIsOpenSorting(!isOpenSorting)} className="sorting-label">Сортировка по:</div>
+        {isOpenSorting && (
             <ul className="sorting-list">
-                <li>По популярности</li>
-                <li>Цене (по возрастанию)</li>
-                <li>Цене (по убыванию)</li>
-                <li>А - Я</li>
-                <li>Я - А</li>
+                {sortingList.map((name, i) => <li className={sortingStatus === i ? 'sorting-active' : ''} onClick={() => setSortingStatus(i)}>{name}</li>)}
             </ul>
         )}
     </>
