@@ -2,38 +2,47 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import {
-  createBrowserRouter,
-  RouterProvider,
+  BrowserRouter,
+  Routes,
+  Route
 } from "react-router-dom";
 import './index.css'
 import About from '../components/About';
 import Cart from '../components/Cart';
+import Layout from '../components/Layout';
 import NotFound from '../components/NotFound';
+import User from '../components/User';
+import Food from '../components/Food';
+import FastFoodDetail from '../components/FastFoodDetail';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "about",
-    element: <About />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "cart",
-    element: <Cart />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "food",
-    element: <App />,
-  },
-]);
+const food = [
+  { id: '1', title: 'food1' },
+  { id: '2', title: 'food2' },
+];
+
+const users = [
+  { id: '1', fullName: 'Robin Wieruch' },
+  { id: '2', fullName: 'Sarah Finnley' },
+];
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+     <BrowserRouter>
+      <Routes element={<Layout />}>
+          <Route index element={<App />}  /> 
+          
+          <Route path="about" element={<About users={users} />} /> 
+          <Route path="about/:userId" element={<User />} />  
+
+          <Route path="food" element={<Food/>} /> 
+            {/* <Route path=":foodId" element={<FastFoodDetail />} />
+          </Route> */}
+          
+          <Route path="food/:foodId" element={<FastFoodDetail />} /> 
+
+          <Route path="cart" element={<Cart />} /> 
+          <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
 )

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../style/FastFoodItem.scss";
 
-function FastFoodItem({ title, price, imgLink }) {
+function FastFoodItem({ id, title, price, imgLink }) {
   const [pizzaCount, setPizzaCount] = useState(0);
 
   const onClickButton = () => {
@@ -10,7 +11,7 @@ function FastFoodItem({ title, price, imgLink }) {
 
   return (
     <div className="food-block">
-      <img src={imgLink} alt="imgLink" />
+       <Link to={`${id}`}><img src={imgLink} alt="imgLink" /></Link>
       <p>{title}</p>
       <p>Price: {price}</p>
       <button onClick={onClickButton}>Добавить {pizzaCount}</button>

@@ -7,10 +7,6 @@ function Sort(){
     const [ isOpenSorting, setIsOpenSorting ] = useState(false);
     const [ sortingStatus, setSortingStatus ] = useState(0)
     
-    useEffect(()=> {
-        console.log(sortingList[sortingStatus])
-    }, [sortingStatus])
-
     return <>
         <div onClick={() => setIsOpenSorting(!isOpenSorting)} className="sorting-label">Сортировка по:</div>
         {isOpenSorting && (

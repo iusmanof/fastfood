@@ -2,11 +2,11 @@
   "fast-food": [
     { "id": "1", "title": "Burger1", "price": 10 , "imgLink": "https://img.freepik.com/free-psd/fresh-beef-burger-isolated-transparent-background_191095-9018.jpg?w=826&t=st=1716097405~exp=1716098005~hmac=55832de731282028c53ca5650a7b3ee28969056d69db454667997cceec52a6e7"},
     { "id": "2", "title": "Pizza", "price": 23, "imgLink": "https://img.freepik.com/free-psd/pictou-county-pizza-isolated-transparent-background_191095-32844.jpg?t=st=1716097197~exp=1716100797~hmac=950393047246e99e15dfa175a8ce3c760acfa870d9ef168f70e1d5f29878912e&w=826" },
-    { "id": "2", "title": "Coca-cola", "price": 4, "imgLink": "https://img.freepik.com/free-vector/long-island-ice-tea-cocktail-realistic_1284-3888.jpg?t=st=1716098363~exp=1716101963~hmac=2d30deb054d5eafc8359bbf4da3067450f3d329da1da79526e560f459945e413&w=826" },
-    { "id": "2", "title": "Burger2", "price": 11, "imgLink": "https://img.freepik.com/premium-vector/cute-burger-image-cheeseburger-appetizing-hamburger-flat-style_118339-4538.jpg?w=826" },
-    { "id": "2", "title": "Fry1", "price": 3, "imgLink": "https://img.freepik.com/free-photo/close-up-french-fries-plate_23-2148262916.jpg?t=st=1716098489~exp=1716102089~hmac=57e056ebd72ca27839ec1129f98bf616a286f2f1f461c8377d5270c512e44fb9&w=826" },
-    { "id": "2", "title": "Chicken1", "price": 13, "imgLink": "https://img.freepik.com/free-photo/top-view-fried-chicken-burgers-tray-with-sauce-lemon_23-2148699068.jpg?t=st=1716098552~exp=1716102152~hmac=4ed474287d2e69e750e7b3520f10b0bf3f50c95c7f4ea117dd5fcc6ed6184e0a&w=1380" },
-    { "id": "2", "title": "popcorn1", "price": 5, "imgLink": "https://img.freepik.com/premium-photo/red-white-striped-popcorn-box-with-small-piece-popcorn-it_81048-1777.jpg"}
+    { "id": "3", "title": "Coca-cola", "price": 4, "imgLink": "https://img.freepik.com/free-vector/long-island-ice-tea-cocktail-realistic_1284-3888.jpg?t=st=1716098363~exp=1716101963~hmac=2d30deb054d5eafc8359bbf4da3067450f3d329da1da79526e560f459945e413&w=826" },
+    { "id": "4", "title": "Burger2", "price": 11, "imgLink": "https://img.freepik.com/premium-vector/cute-burger-image-cheeseburger-appetizing-hamburger-flat-style_118339-4538.jpg?w=826" },
+    { "id": "5", "title": "Fry1", "price": 3, "imgLink": "https://img.freepik.com/free-photo/close-up-french-fries-plate_23-2148262916.jpg?t=st=1716098489~exp=1716102089~hmac=57e056ebd72ca27839ec1129f98bf616a286f2f1f461c8377d5270c512e44fb9&w=826" },
+    { "id": "6", "title": "Chicken1", "price": 13, "imgLink": "https://img.freepik.com/free-photo/top-view-fried-chicken-burgers-tray-with-sauce-lemon_23-2148699068.jpg?t=st=1716098552~exp=1716102152~hmac=4ed474287d2e69e750e7b3520f10b0bf3f50c95c7f4ea117dd5fcc6ed6184e0a&w=1380" },
+    { "id": "7", "title": "popcorn1", "price": 5, "imgLink": "https://img.freepik.com/premium-photo/red-white-striped-popcorn-box-with-small-piece-popcorn-it_81048-1777.jpg"}
   ],
   "comments": [
     { "id": "1", "text": "a comment about post 1", "postId": "1" },
