@@ -12,9 +12,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
    
-    
     fetch("http://localhost:3000/fast-food")
       .then((response) => response.json())
       .then((data) => setFoodState(data));
@@ -27,7 +25,7 @@ function App() {
 
   return (
     <div>
-      {/* <Header isAllowed /> */}
+      <Header />
       <Categories />
       <Sort />
 

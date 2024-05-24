@@ -1,12 +1,19 @@
-import "../style/Header.scss";
+import styles from "../style/Header.module.scss";
+import { Link } from "react-router-dom";
 
-function Header({ isAllowed }) {
-  const a = true;
+function Header() {
+  console.log(styles)
 
   return (
     <>
-      {isAllowed && "is Allowed"}
-      <div className="class1">class 1</div>
+      <div>LOGO</div>
+      <div>
+        <ul className={styles.headerlinks}>
+          <li><Link to={`/`}>Home</Link></li>
+          <li><Link to={`/about`}>About</Link></li>
+          <li><Link to={`/cart`}>Cart</Link></li>
+        </ul>
+      </div>
     </>
   );
 }

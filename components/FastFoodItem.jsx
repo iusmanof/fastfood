@@ -7,6 +7,7 @@ function FastFoodItem({ title, price, imgLink }) {
   const onClickButton = () => {
     setPizzaCount(pizzaCount + 1);
   };
+
   return (
     <div className="food-block">
       <img src={imgLink} alt="imgLink" />
@@ -14,7 +15,7 @@ function FastFoodItem({ title, price, imgLink }) {
       <p>Price: {price}</p>
       <button onClick={onClickButton}>Добавить {pizzaCount}</button>
     </div>
-  );
+  ); 
 }
 
 export default FastFoodItem;
