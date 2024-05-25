@@ -8,24 +8,28 @@ const CategoryItem = ({
   categoryNameStatus,
   categoryCurrentStatus,
   setActive,
+  categoryHandler
 }) => {
   return (
     <li
       className={categoryCurrentStatus === categoryNameStatus ? "active" : ""}
-      onClick={() => setActive(categoryNameStatus)}
+      onClick={() => { 
+        setActive(categoryNameStatus) 
+        categoryHandler(categoryNameStatus)
+      }}
     >
       {categoryName}
     </li>
   );
 };
 
-const Categories = () => {
+const Categories = ({ categoryHandler }) => {
   const [active, setActive] = useState("pizza");
   const categoriesFastFood = [
-    { id: 0, categoryName: "Все", categoryNameStatus: "all" },
+    { id: 0, categoryName: "Все", categoryNameStatus: "" },
     { id: 1, categoryName: "Пицццы", categoryNameStatus: "pizza" },
     { id: 2, categoryName: "Бургеры", categoryNameStatus: "burger" },
-    { id: 3, categoryName: "Напитки", categoryNameStatus: "drink" },
+    { id: 3, categoryName: "Напитки", categoryNameStatus: "drinks" },
     { id: 4, categoryName: "Картошка фри", categoryNameStatus: "fry" },
     { id: 5, categoryName: "Поп-корн", categoryNameStatus: "popcorn" },
   ];
@@ -41,6 +45,7 @@ const Categories = () => {
                 categoryNameStatus={elementFastFood.categoryNameStatus}
                 categoryCurrentStatus={active}
                 setActive={setActive}
+                categoryHandler={categoryHandler}
               />
             );
           })}
