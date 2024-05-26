@@ -1,0 +1,21 @@
+.pagination{
+    color: darkmagenta;
+}
+
+.pagination ul {
+    display: inline-flex;
+}
+
+.pagination li {
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    border: 2px dashed darkcyan;
+}
+
+.pagination li:hover {
+    background-color: brown;
+    color: floralwhite;
+}
