@@ -24,7 +24,7 @@ const CategoryItem = ({
 };
 
 const Categories = ({ categoryHandler }) => {
-  const [active, setActive] = useState("pizza");
+  const [active, setActive] = useState("");
   const categoriesFastFood = [
     { id: 0, categoryName: "Все", categoryNameStatus: "" },
     { id: 1, categoryName: "Пицццы", categoryNameStatus: "pizza" },
