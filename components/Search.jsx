@@ -1,6 +1,9 @@
-import styles from '../style/Search.module.scss'
+import React from "react";
+import styles from "../style/Search.module.scss";
+import { SearchContext } from "./Food";
 
-const Search = ({ searchValue, setSearchValue }) => {
+const Search = () => {
+  const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const searchValueHandler = (v) => {
     setSearchValue(v);
   };
@@ -15,7 +18,7 @@ const Search = ({ searchValue, setSearchValue }) => {
 
       {searchValue && (
         <svg
-          onClick={() => setSearchValue('')}
+          onClick={() => setSearchValue("")}
           className={styles.icon_close}
           id="Layer_1"
           version="1.1"

@@ -2,11 +2,11 @@ import styles from "../style/Header.module.scss";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 
-function Header({searchValue, setSearchValue}) {
+function Header() {
   return (
     <>
       <div>LOGO</div>
-      <Search  searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Search />
 
       <div>
         <ul className={styles.headerlinks}>

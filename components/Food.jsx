@@ -2,11 +2,13 @@ import Header from "../components/Header";
 import FastFoodItem from "../components/FastFoodItem";
 import FastFoodBlock from "../components/FastFoodBlock";
 import FastFoodItemSkeleton from "../components/FastFoodItemSkeleton";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import { Outlet } from "react-router-dom";
 import Pagination from "./Pagination";
+
+export const SearchContext = React.createContext({});
 
 const Food = () => {
   const [foodState, setFoodState] = useState([]);
@@ -46,17 +48,18 @@ const Food = () => {
       isLoading ? <FastFoodItemSkeleton /> : <FastFoodItem {...i} />
     );
   return (
-    <>
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
-      <Categories categoryHandler={setCategory} />
-      <Sort sortingHandler={setSorting} />
-
-      <FastFoodBlock>
-        {pizzasBLock}
-        <Outlet />
-      </FastFoodBlock>
-      <Pagination setPage={setPage} />
-    </>
+    <div>
+      <SearchContext.Provider value={{searchValue, setSearchValue}}>
+        <Header />
+        <Categories categoryHandler={setCategory} />
+        <Sort sortingHandler={setSorting} />
+        <FastFoodBlock>
+          {pizzasBLock}
+          <Outlet />
+        </FastFoodBlock>
+        <Pagination setPage={setPage} />
+      </SearchContext.Provider>
+    </div>
   );
 };
 
