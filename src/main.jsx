@@ -15,6 +15,7 @@ import FastFoodDetail from "../components/FastFoodDetail";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import counterSlice from "../redux/slices/couterSlice.js";
+import filterSlice from "../redux/slices/filterSlice.js";
 
 
 const food = [
@@ -30,6 +31,7 @@ const users = [
 export const store = configureStore({
   reducer: {
     counter: counterSlice,
+    filter: filterSlice
   },
 })
 

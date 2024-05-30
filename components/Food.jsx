@@ -7,18 +7,20 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import { Outlet } from "react-router-dom";
 import Pagination from "./Pagination";
+import { useSelector } from "react-redux";
 
 export const SearchContext = React.createContext({});
 
 const Food = () => {
+  const categoryFilter  = useSelector((state) => state.filter.category)
+  const sorting = useSelector((state) => state.filter.sorting.property)
+
   const [foodState, setFoodState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [category, setCategory] = useState("");
-  const [sorting, setSorting] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(1);
 
-  const categoryParam = category ? category : "";
+  const categoryParam = categoryFilter ? categoryFilter : "";
   const sortingParam = sorting ? sorting.replace("-", "") : "";
   const orderParam = sorting.includes("-") ? "desc" : "asc";
   const pageParam = page;
@@ -35,7 +37,7 @@ const Food = () => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-  }, [category, sorting, searchValue, page]);
+  }, [ sorting, searchValue, page, categoryFilter]);
 
   const pizzasBLock = foodState
     .filter((obj) => {
@@ -51,8 +53,8 @@ const Food = () => {
     <div>
       <SearchContext.Provider value={{searchValue, setSearchValue}}>
         <Header />
-        <Categories categoryHandler={setCategory} />
-        <Sort sortingHandler={setSorting} />
+        <Categories />
+        <Sort />
         <FastFoodBlock>
           {pizzasBLock}
           <Outlet />

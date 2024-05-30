@@ -1,21 +1,32 @@
-// import React from "react"
-
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "../style/Categories.scss";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../redux/slices/filterSlice";
+
+const categoriesFastFood = [
+  { id: 0, categoryName: "Все", categoryNameStatus: "" },
+  { id: 1, categoryName: "Пицццы", categoryNameStatus: "pizza" },
+  { id: 2, categoryName: "Бургеры", categoryNameStatus: "burger" },
+  { id: 3, categoryName: "Напитки", categoryNameStatus: "drinks" },
+  { id: 4, categoryName: "Картошка фри", categoryNameStatus: "fry" },
+  { id: 5, categoryName: "Поп-корн", categoryNameStatus: "popcorn" },
+];
 
 const CategoryItem = ({
   categoryName,
   categoryNameStatus,
   categoryCurrentStatus,
   setActive,
-  categoryHandler
 }) => {
+
+  const dispatch = useDispatch()
+
   return (
     <li
       className={categoryCurrentStatus === categoryNameStatus ? "active" : ""}
       onClick={() => { 
         setActive(categoryNameStatus) 
-        categoryHandler(categoryNameStatus)
+        dispatch(setCategory(categoryNameStatus))
       }}
     >
       {categoryName}
@@ -23,16 +34,9 @@ const CategoryItem = ({
   );
 };
 
-const Categories = ({ categoryHandler }) => {
+const Categories = () => {
   const [active, setActive] = useState("");
-  const categoriesFastFood = [
-    { id: 0, categoryName: "Все", categoryNameStatus: "" },
-    { id: 1, categoryName: "Пицццы", categoryNameStatus: "pizza" },
-    { id: 2, categoryName: "Бургеры", categoryNameStatus: "burger" },
-    { id: 3, categoryName: "Напитки", categoryNameStatus: "drinks" },
-    { id: 4, categoryName: "Картошка фри", categoryNameStatus: "fry" },
-    { id: 5, categoryName: "Поп-корн", categoryNameStatus: "popcorn" },
-  ];
+ 
   return (
     <>
       <div className="category">
@@ -45,7 +49,6 @@ const Categories = ({ categoryHandler }) => {
                 categoryNameStatus={elementFastFood.categoryNameStatus}
                 categoryCurrentStatus={active}
                 setActive={setActive}
-                categoryHandler={categoryHandler}
               />
             );
           })}
