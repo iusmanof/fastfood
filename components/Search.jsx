@@ -1,32 +1,47 @@
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 import styles from "../style/Search.module.scss";
 import { SearchContext } from "./Food";
+import debounce from "lodash.debounce";
 
 const Search = () => {
+  const [value, setValue] = useState();
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
-  const searchValueHandler = (v) => {
-    setSearchValue(v);
+  const inputRef = useRef();
+
+  const onClickClear = () => {
+    setSearchValue("");
+    setValue("");
+    inputRef.current.focus();
+  };
+
+  const updateSearchValue = React.useCallback(debounce((str) => {
+    setSearchValue(str)
+  }, 1000),
+    []) 
+
+  const onChangeInput = (event) => {
+    setValue(event.target.value);
+    updateSearchValue(event.target.value);
   };
 
   return (
     <div>
       <input
+        ref={inputRef}
         placeholder="поиск фастфуда ... "
-        onChange={(event) => searchValueHandler(event.target.value)}
-        value={searchValue}
+        onChange={onChangeInput}
+        value={value}
       />
 
-      {searchValue && (
+      {value && (
         <svg
-          onClick={() => setSearchValue("")}
+          onClick={() => onClickClear("")}
           className={styles.icon_close}
           id="Layer_1"
           version="1.1"
           viewBox="0 0 512 512"
           width="512px"
-          xml:space="preserve"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  
