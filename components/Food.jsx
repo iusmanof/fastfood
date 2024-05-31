@@ -75,7 +75,7 @@ const Food = () => {
           {pizzasBLock}
           <Outlet />
         </FastFoodBlock>
-        <Pagination onChangePage={onChangePage} />
+        <Pagination value={currentPage} onChangePage={onChangePage} />
       </SearchContext.Provider>
     </div>
   );
