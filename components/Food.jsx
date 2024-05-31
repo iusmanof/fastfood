@@ -7,25 +7,33 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import { Outlet } from "react-router-dom";
 import Pagination from "./Pagination";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { setCurrentPage } from "../redux/slices/filterSlice";
 
 export const SearchContext = React.createContext({});
 
 const Food = () => {
   const categoryFilter = useSelector((state) => state.filter.category);
   const sorting = useSelector((state) => state.filter.sorting.property);
+  const currentPage = useSelector((state) => state.filter.currentPage)
+  const dispatch = useDispatch()
 
   const [foodState, setFoodState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   const categoryParam = categoryFilter ? categoryFilter : "";
   const sortingParam = sorting ? sorting.replace("-", "") : "";
   const orderParam = sorting.includes("-") ? "desc" : "asc";
-  const pageParam = page;
+  const pageParam = currentPage;
   const perPageParam = 2;
+
+  const onChangePage = (number) => {
+    console.log(number)
+    dispatch(setCurrentPage(number))
+  }
 
   useEffect(() => {
     // fetch(
@@ -44,7 +52,7 @@ const Food = () => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-  }, [sorting, searchValue, page, categoryFilter]);
+  }, [sorting, searchValue, currentPage, categoryFilter]);
 
   const pizzasBLock = foodState
     .filter((obj) => {
@@ -56,6 +64,7 @@ const Food = () => {
     .map((i) =>
       isLoading ? <FastFoodItemSkeleton /> : <FastFoodItem {...i} />
     );
+
   return (
     <div>
       <SearchContext.Provider value={{ searchValue, setSearchValue }}>
@@ -66,7 +75,7 @@ const Food = () => {
           {pizzasBLock}
           <Outlet />
         </FastFoodBlock>
-        <Pagination setPage={setPage} />
+        <Pagination onChangePage={onChangePage} />
       </SearchContext.Provider>
     </div>
   );
