@@ -1,8 +1,12 @@
 import styles from "../style/Header.module.scss";
 import { Link } from "react-router-dom";
 import Search from "./Search";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const totalPrice = useSelector((state) => state.cart.totalPrice)
+  const count = useSelector((state) => state.cart.items.length)
+
   return (
     <>
       <div>LOGO</div>
@@ -20,7 +24,7 @@ function Header() {
             <Link to={`/food`}>Food</Link>
           </li>
           <li>
-            <Link to={`/cart`}>Cart</Link>
+            <Link to={`/cart`}>Cart(Total Price:{totalPrice} | count: {count} )</Link>
           </li>
         </ul>
       </div>

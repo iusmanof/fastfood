@@ -20,3 +20,6 @@ function FastFoodItem({ id, title, price, imgLink }) {
 }
 
 export default FastFoodItem;
+
+
+// 27:17

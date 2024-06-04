@@ -16,6 +16,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import counterSlice from "../redux/slices/couterSlice.js";
 import filterSlice from "../redux/slices/filterSlice.js";
+import cartSlice from "../redux/slices/cartSlice.js";
 
 
 const food = [
@@ -31,7 +32,8 @@ const users = [
 export const store = configureStore({
   reducer: {
     counter: counterSlice,
-    filter: filterSlice
+    filter: filterSlice,
+    cart: cartSlice
   },
 })
 

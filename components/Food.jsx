@@ -72,7 +72,6 @@ const Food = () => {
         sortingList.find((obj) => {
           obj.property === params.sortProperty;
         }) || "rating";
-      console.log(params);
       dispatch(
         setFilters({ ...params, sorting, category: params.categoryFilter })
       );
