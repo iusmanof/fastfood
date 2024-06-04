@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import "../style/Sort.scss";
 import { useDispatch } from "react-redux";
 import { setSorting } from "../redux/slices/filterSlice";
-
-const sortingList = [
+export const sortingList = [
   {
     id: 0,
     name: "",
