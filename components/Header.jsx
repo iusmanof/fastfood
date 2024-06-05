@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function Header() {
   const totalPrice = useSelector((state) => state.cart.totalPrice)
-  const count = useSelector((state) => state.cart.items.length)
+  const countFood = useSelector((state) => state.cart.countFood);
 
   return (
     <>
@@ -24,7 +24,7 @@ function Header() {
             <Link to={`/food`}>Food</Link>
           </li>
           <li>
-            <Link to={`/cart`}>Cart(Total Price:{totalPrice} | count: {count} )</Link>
+            <Link to={`/cart`}>Cart(Total Price:{totalPrice} | count: {countFood} )</Link>
           </li>
         </ul>
       </div>
