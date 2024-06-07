@@ -12,12 +12,8 @@ import Food from "../components/Food";
 import FastFoodDetail from "../components/FastFoodDetail";
 
 // RTK
-import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import counterSlice from "../redux/slices/couterSlice.js";
-import filterSlice from "../redux/slices/filterSlice.js";
-import cartSlice from "../redux/slices/cartSlice.js";
-
+import { store } from "../redux/store.js";
 
 const food = [
   { id: "1", title: "food1" },
@@ -28,14 +24,6 @@ const users = [
   { id: "1", fullName: "Robin Wieruch" },
   { id: "2", fullName: "Sarah Finnley" },
 ];
-
-export const store = configureStore({
-  reducer: {
-    counter: counterSlice,
-    filter: filterSlice,
-    cart: cartSlice
-  },
-})
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>

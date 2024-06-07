@@ -9,9 +9,9 @@ import Sort, { sortingList } from "../components/Sort";
 import { Outlet } from "react-router-dom";
 import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { setCurrentPage, setFilters } from "../redux/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
+import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
 export const SearchContext = React.createContext({});
 
@@ -20,35 +20,36 @@ const Food = () => {
   const categoryFilter = useSelector((state) => state.filter.category);
   const sorting = useSelector((state) => state.filter.sorting.property);
   const currentPage = useSelector((state) => state.filter.currentPage);
+  const items = useSelector((state) => state.pizza.items)
   const dispatch = useDispatch();
+
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
-
   const [foodState, setFoodState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
 
-  const fetchFastFood = () => {
-    setIsLoading(true);
+  const getFastFood = async () => {
     const categoryParam = categoryFilter ? categoryFilter : "";
     const sortingParam = sorting ? sorting.replace("-", "") : "";
     const orderParam = sorting.includes("-") ? "desc" : "asc";
     const pageParam = currentPage;
     const perPageParam = 2;
-    axios
-      .get(
-        `http://localhost:3000/fast-food?category=${categoryParam}&_sort=${sortingParam}&_order=${orderParam}&_page=${pageParam}&_per_page=${perPageParam}`
-      )
-      .then((res) => {
-        setFoodState(res.data.data);
-      });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 250);
+
+    setIsLoading(true);
+    dispatch(fetchPizzas({
+      categoryParam,
+      sortingParam,
+      orderParam,
+      pageParam,
+      perPageParam
+    }))
+    window.scrollTo(0, 0);
+    setIsLoading(false);
+
+
   };
 
-  // 27:00
-  // Если изменили параметры и был первый рендер 
   useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
@@ -85,16 +86,10 @@ const Food = () => {
 
   // Если был первый рендер то делаем fetch
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    if (!isSearch.current) {
-      fetchFastFood();
-    }
-
-    isSearch.current = false;
+      getFastFood();
   }, [sorting, searchValue, currentPage, categoryFilter]);
 
-  const pizzasBLock = foodState
+  const pizzasBLock = items
     .filter((obj) => {
       if (obj.title.toLocaleLowerCase().includes(searchValue.toLowerCase())) {
         return true;
