@@ -20,7 +20,7 @@ const Food = () => {
   const categoryFilter = useSelector((state) => state.filter.category);
   const sorting = useSelector((state) => state.filter.sorting.property);
   const currentPage = useSelector((state) => state.filter.currentPage);
-  const items = useSelector((state) => state.pizza.items)
+  const {items, status} = useSelector((state) => state.pizza)
   const dispatch = useDispatch();
 
   const isSearch = React.useRef(false);
@@ -96,13 +96,18 @@ const Food = () => {
       }
       return false;
     })
-    .map((i) =>
-      isLoading ? (
+    .map((i) => (
+      status === 'loading' ? (
         <FastFoodItemSkeleton key={i.id} />
       ) : (
         <FastFoodItem key={i.id} {...i} />
       )
+    )
     );
+
+    const errorBlock = (
+      <div>Error</div>
+    )
 
   return (
     <div>
@@ -111,7 +116,7 @@ const Food = () => {
         <Categories />
         <Sort />
         <FastFoodBlock>
-          {pizzasBLock}
+          {status === 'error'? errorBlock : pizzasBLock}
           <Outlet />
         </FastFoodBlock>
         <Pagination value={currentPage} onChangePage={onChangePage} />
