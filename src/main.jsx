@@ -12,46 +12,23 @@ import Food from "../components/Food";
 import FastFoodDetail from "../components/FastFoodDetail";
 
 // RTK
-import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import counterSlice from "../redux/slices/couterSlice.js";
-import filterSlice from "../redux/slices/filterSlice.js";
-import cartSlice from "../redux/slices/cartSlice.js";
-
-
-const food = [
-  { id: "1", title: "food1" },
-  { id: "2", title: "food2" },
-];
+import { store } from "../redux/store.js";
 
 const users = [
   { id: "1", fullName: "Robin Wieruch" },
   { id: "2", fullName: "Sarah Finnley" },
 ];
 
-export const store = configureStore({
-  reducer: {
-    counter: counterSlice,
-    filter: filterSlice,
-    cart: cartSlice
-  },
-})
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Provider store={store}>
       <Routes element={<Layout />}>
         <Route index element={<App />} />
-
         <Route path="about" element={<About users={users} />} />
         <Route path="about/:userId" element={<User />} />
-
         <Route path="food" element={<Food />} />
-        {/* <Route path=":foodId" element={<FastFoodDetail />} />
-          </Route> */}
-
         <Route path="food/:foodId" element={<FastFoodDetail />} />
-
         <Route path="cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

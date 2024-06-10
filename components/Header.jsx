@@ -2,14 +2,16 @@ import styles from "../style/Header.module.scss";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useSelector } from "react-redux";
+import { selectCart } from "../redux/slices/cartSlice";
 
 function Header() {
-  const totalPrice = useSelector((state) => state.cart.totalPrice)
-  const count = useSelector((state) => state.cart.items.length)
+  const { totalPrice }= useSelector(selectCart)
+  const cartItemsCount = useSelector(state => state.cart.items.reduce((sum, o) => { return o.count + sum }, 0))
+
 
   return (
     <>
-      <div>LOGO</div>
+      <div>LOGO #19 09062024</div> 
       <Search />
 
       <div>
@@ -24,7 +26,7 @@ function Header() {
             <Link to={`/food`}>Food</Link>
           </li>
           <li>
-            <Link to={`/cart`}>Cart(Total Price:{totalPrice} | count: {count} )</Link>
+            <Link to={`/cart`}>Cart(Total Price:{totalPrice} | count: {cartItemsCount} )</Link>
           </li>
         </ul>
       </div>
