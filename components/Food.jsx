@@ -9,7 +9,12 @@ import Sort, { sortingList } from "../components/Sort";
 import { Outlet } from "react-router-dom";
 import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFilter, selectFilterProperty, setCurrentPage, setFilters } from "../redux/slices/filterSlice";
+import {
+  selectFilter,
+  selectFilterProperty,
+  setCurrentPage,
+  setFilters,
+} from "../redux/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
 import { fetchPizzas, selectPizza } from "../redux/slices/pizzaSlice";
 
@@ -17,7 +22,7 @@ const Food = () => {
   const navigate = useNavigate();
   const { category, currentPage, searchValue } = useSelector(selectFilter);
   const sorting = useSelector(selectFilterProperty);
-  const { items, status } = useSelector(selectPizza)
+  const { items, status } = useSelector(selectPizza);
 
   const dispatch = useDispatch();
 
@@ -29,15 +34,17 @@ const Food = () => {
     const sortingParam = sorting ? sorting.replace("-", "") : "";
     const orderParam = sorting.includes("-") ? "desc" : "asc";
     const pageParam = currentPage;
-    const perPageParam = 6  ;
+    const perPageParam = 6;
 
-    dispatch(fetchPizzas({
-      categoryParam,
-      sortingParam,
-      orderParam,
-      pageParam,
-      perPageParam
-    }))
+    dispatch(
+      fetchPizzas({
+        categoryParam,
+        sortingParam,
+        orderParam,
+        pageParam,
+        perPageParam,
+      })
+    );
     window.scrollTo(0, 0);
   };
 
@@ -87,23 +94,22 @@ const Food = () => {
       return false;
     })
     .map((i) =>
-      status === 'loading' ? (
+      status === "loading" ? (
         <FastFoodItemSkeleton key={i.id} />
       ) : (
         <FastFoodItem key={i.id} {...i} />
       )
     );
 
-  const error = (<div>Error</div>)
+  const error = <div>Error</div>;
 
   return (
     <div>
-      <Header />
       <Categories />
       <Sort />
       <FastFoodBlock>
-        {status === 'error' ? error : pizzasBLock}
-        <Outlet />
+        {status === "error" ? error : pizzasBLock}
+        {/* <Outlet /> */}
       </FastFoodBlock>
       <Pagination value={currentPage} onChangePage={onChangePage} />
     </div>

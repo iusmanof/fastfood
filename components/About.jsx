@@ -5,7 +5,6 @@ function About({ users }) {
   const { userId } = useParams();
   return (
     <>
-      <Header />
       <h2>About</h2>
       <ul>
         {users.map((user) => (
@@ -16,8 +15,6 @@ function About({ users }) {
           </li>
         ))}
       </ul>
-
-      <Outlet />
     </>
   );
 }

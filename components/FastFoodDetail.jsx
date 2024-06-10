@@ -1,21 +1,36 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FastFoodItemSkeleton from "../components/FastFoodItemSkeleton";
+import axios from "axios";
 
 function FastFoodDetail() {
   const { foodId } = useParams();
   const [foodState, setFoodState] = useState([{}]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`http://localhost:3000/fast-food/${foodId}`)
-      .then((response) => response.json())
-      .then((data) => setFoodState(data));
+    async function fetchPizzaDeatail() {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/fast-food/${foodId}`
+        );
+        setFoodState(data);
+        // setTimeout(() => {
+        //   setIsLoading(false);
+        // }, 500);
+      } catch (error) {
+        alert(error);
+        navigate('/food')
+      }
+    }
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    fetchPizzaDeatail();
   }, []);
+
+  if (!foodState){
+   return "Загрузка ..."
+  }
 
   const item = (
     <div className="food-block">
@@ -26,8 +41,8 @@ function FastFoodDetail() {
       <Link to="/food">Back to Food</Link>
     </div>
   );
-
-  return isLoading ? <FastFoodItemSkeleton /> : item;
+  return item;
+  // return isLoading ? <FastFoodItemSkeleton /> : item;
 }
 
 export default FastFoodDetail;

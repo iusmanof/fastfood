@@ -31,7 +31,6 @@ function Cart() {
 
   return (
     <>
-      <Header />
       <h1>Cart</h1>
       <button onClick={handleClearAll}>Clear all</button>
       {itemsCart}
