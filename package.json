@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/react-router": "^5.1.20",
     "axios": "^1.7.2",
     "json-server": "^1.0.0-beta.0",
