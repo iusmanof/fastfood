@@ -1,11 +1,11 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import FastFoodItemSkeleton from "../components/FastFoodItemSkeleton";
+import FastFoodItemSkeleton from "./FastFoodItemSkeleton";
 import axios from "axios";
 
 function FastFoodDetail() {
   const { foodId } = useParams();
-  const [foodState, setFoodState] = useState([{}]);
+  const [foodState, setFoodState] = useState<{imgLink: string, title: string, price: number} | null>(null);
   // const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate()
 

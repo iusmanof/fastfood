@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/Header";
+import Header from "./Header";
 import { clearCart, incrementFood, decrementFood, removeFood, selectCart } from "../redux/slices/cartSlice";
 
 function Cart() {

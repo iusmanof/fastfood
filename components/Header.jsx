@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <>
-      <div>LOGO #19 09062024</div>
+      <div>LOGO #19 10-06-2024 ts</div>
       {location.pathname !== "/cart" && <Search />}
 
       <div>
