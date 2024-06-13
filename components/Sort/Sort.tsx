@@ -1,8 +1,14 @@
 import { useEffect, useState, useRef } from "react";
-import "../style/Sort.scss";
+import "./Sort.scss";
 import { useDispatch } from "react-redux";
-import { setSorting } from "../redux/slices/filterSlice";
-export const sortingList = [
+import { setSorting } from "../../redux/slices/filterSlice";
+
+type sortingListType = {
+  id: number;
+  name: string;
+  property: string;
+};
+export const sortingList: sortingListType[] = [
   {
     id: 0,
     name: "По популярности (по возрастанию)",
@@ -20,39 +26,41 @@ export const sortingList = [
 ];
 
 function Sort() {
-  const [sortOpen, setSortOpen] = useState(false)
+  const [sortOpen, setSortOpen] = useState(false);
   const dispatch = useDispatch();
-  const sortRef = useRef();
+  const sortRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const handleClickOutSide = (event) => {
-      if (event.target.parentElement.className.includes(sortRef.current.className)) {
-        setSortOpen(false)
+    const handleClickOutSide = (event: MouseEvent): void => {
+      event.preventDefault();
+      const element = event.target as HTMLElement;
+      const divElement = element.parentElement as HTMLDivElement;
+      if (sortRef.current) {
+        if (divElement.className.includes(sortRef.current.className)) {
+          setSortOpen(false);
+        }
       }
-    }
-    document.body.addEventListener('click', handleClickOutSide)
-  
+    };
+
+    document.body.addEventListener("click", (e) => handleClickOutSide(e));
+
     return () => {
-      document.body.removeEventListener('click', handleClickOutSide)
-    }
-  }, [])
+      document.body.removeEventListener("click", (e) => handleClickOutSide(e));
+    };
+  }, []);
 
   return (
     <>
-      <div
-        className="sorting-label"
-        onClick={() => setSortOpen(true)}
-      >
+      <div className="sorting-label" onClick={() => setSortOpen(true)}>
         Сортировка по:
       </div>
       <ul className="sorting-list" ref={sortRef}>
-        {sortOpen &&
+        {sortOpen && (
           <>
             {sortingList.map((item, i) => (
               <li
                 key={item.id}
                 onClick={() => {
-
                   dispatch(setSorting(item));
                 }}
               >
@@ -60,10 +68,8 @@ function Sort() {
               </li>
             ))}
           </>
-
-        }
+        )}
       </ul>
-
     </>
   );
 }

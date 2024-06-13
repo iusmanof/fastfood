@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import About from "../components/About.jsx";
-import Cart from "../components/Cart.jsx";
+import About from "../components/About/About.js";
+import Cart from "../components/Cart/";
 import NotFound from "../components/NotFound.jsx";
 import User from "../components/User.jsx";
 import Food from "../components/Food.jsx";
-import FastFoodDetail from "../components/FastFoodDetail";
+import FastFoodDetail from "../components/FastFoodDetail/";
 // RTK
 import Home from "../components/Home.jsx";
 import MainLyout from "../layouts/MainLyout.jsx";
@@ -14,7 +14,7 @@ const users = [
   { id: "2", fullName: "Sarah Finnley" },
 ]; 
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <Routes>

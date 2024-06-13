@@ -1,7 +1,17 @@
-import Header from "../components/Header";
+import React from "react";
+import Header from "../Header/Header";
 import { Link, Outlet, useParams } from "react-router-dom";
 
-function About({ users }) {
+interface IUser {
+  id: string;
+  fullName: string;
+}
+
+interface IAboutProps {
+  users: IUser[];
+}
+
+const About: React.FC<IAboutProps> = ({ users }): React.ReactElement => {
   const { userId } = useParams();
   return (
     <>

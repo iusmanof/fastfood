@@ -1,9 +1,10 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import FastFoodItemSkeleton from "./FastFoodItemSkeleton";
+import React from 'react';
+import FastFoodItemSkeleton from "../FastFoodItemSkeleton/FastFoodItemSkeleton";
 import axios from "axios";
 
-function FastFoodDetail() {
+const FastFoodDetail: React.FC = (): React.ReactNode =>{
   const { foodId } = useParams();
   const [foodState, setFoodState] = useState<{imgLink: string, title: string, price: number} | null>(null);
   // const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +30,7 @@ function FastFoodDetail() {
   }, []);
 
   if (!foodState){
-   return "Загрузка ..."
+   return <div>"Загрузка ..."</div>
   }
 
   const item = (

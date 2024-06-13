@@ -1,13 +1,11 @@
 import qs from "qs";
-import Header from "../components/Header";
-import FastFoodItem from "../components/FastFoodItem";
-import FastFoodBlock from "../components/FastFoodBlock";
-import FastFoodItemSkeleton from "../components/FastFoodItemSkeleton";
+import FastFoodItem from "./FastFoodItem/FastFoodItem";
+import FastFoodBlock from "./FastFoodBlock/FastFoodBlock";
+import FastFoodItemSkeleton from "./FastFoodItemSkeleton/FastFoodItemSkeleton";
 import React, { useEffect, useState } from "react";
 import Categories from "../components/Categories";
-import Sort, { sortingList } from "../components/Sort";
-import { Outlet } from "react-router-dom";
-import Pagination from "./Pagination";
+import Sort, { sortingList } from "./Sort/Sort";
+import Pagination from "./Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectFilter,
