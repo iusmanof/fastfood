@@ -2,12 +2,15 @@ import React from "react";
 import ContentLoader from "react-content-loader";
 
 interface FastFoodItemSkeletonProps {
-  id: number;
+  id: number,
+}
+
+interface WithKeyProps {
+  key: React.Key
 }
 
 const FastFoodItemSkeleton: React.FC<FastFoodItemSkeletonProps> = (id) => (
   <ContentLoader
-    key={id}
     speed={2}
     width={170}
     height={340}

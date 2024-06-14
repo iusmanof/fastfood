@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "../components/About/About.js";
 import Cart from "../components/Cart/";
-import NotFound from "../components/NotFound.jsx";
-import User from "../components/User.jsx";
-import Food from "../components/Food.jsx";
+import NotFound from "../components/pages/NotFound.js";
+import User from "../components/pages/User.js";
+import Food from "../components/pages/Food.js";
 import FastFoodDetail from "../components/FastFoodDetail/";
 // RTK
-import Home from "../components/Home.jsx";
+import Home from "../components/pages/Home.js";
 import MainLyout from "../layouts/MainLyout.jsx";
 
 const users = [

@@ -8,6 +8,15 @@ import {
   selectCart,
 } from "../../redux/slices/cartSlice";
 
+interface itemsProps {
+  id: number,
+  title: string,
+  type: string[],
+  size: string[],
+  count: number,
+  totalItemPrice: number
+}
+
 const Cart = () => {
   const { items, totalPrice } = useSelector(selectCart);
   const dispatch = useDispatch();
@@ -17,19 +26,19 @@ const Cart = () => {
       dispatch(clearCart());
     }
   };
-  const handleRemoveItem = (id) => {
+  const handleRemoveItem = (id: number) => {
     dispatch(removeFood(id));
   };
-  const handleIncrementCount = (id) => {
+  const handleIncrementCount = (id: number) => {
     dispatch(incrementFood(id));
   };
-  const handleDecrementCount = (id) => {
+  const handleDecrementCount = (id: number) => {
     dispatch(decrementFood(id));
   };
 
   const itemsCart = (
     <ul>
-      {items.map((i) => {
+      {items.map((i: itemsProps) => {
         return (
           <li>
             {i.title} Type: {i.type} Size: {i.size} count: {i.count} Total Food
