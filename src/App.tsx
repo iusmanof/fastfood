@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "../components/About/About.js";
 import Cart from "../components/Cart/";
 import NotFound from "../components/pages/NotFound.js";
-import User from "../components/pages/User.js";
+import User from "../components/User";
 import Food from "../components/pages/Food.js";
 import FastFoodDetail from "../components/FastFoodDetail/";
 // RTK

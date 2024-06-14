@@ -9,8 +9,8 @@ const Search = () => {
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const onClickClear = (value: string) => {
-    dispatch(setSearchValue(value))
+  const onClickClear = (event: React.MouseEvent<SVGElement>) => {
+    dispatch(setSearchValue(''))
     setValue("");
     inputRef.current?.focus();
   };
@@ -20,7 +20,7 @@ const Search = () => {
   }, 250),
     [])
 
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);
   };
@@ -36,7 +36,7 @@ const Search = () => {
 
       {value && (
         <svg
-          onClick={() => onClickClear("")}
+          onClick={onClickClear}
           className={styles.icon_close}
           id="Layer_1"
           version="1.1"
