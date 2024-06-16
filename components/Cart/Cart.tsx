@@ -8,7 +8,7 @@ import {
   selectCart,
 } from "../../redux/slices/cartSlice";
 
-interface itemsProps {
+interface cartProps {
   id: number,
   title: string,
   type: string[],
@@ -38,7 +38,7 @@ const Cart = () => {
 
   const itemsCart = (
     <ul>
-      {items.map((i: itemsProps) => {
+      {items.map((i: cartProps) => {
         return (
           <li>
             {i.title} Type: {i.type} Size: {i.size} count: {i.count} Total Food
