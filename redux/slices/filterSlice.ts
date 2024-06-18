@@ -1,6 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { RootState } from "../store/store"
 
-const initialState = {
+type SortingType = {
+    name: string,
+    property: 'rating' | '-rating' | 'title' | '-title' | 'price' | '-price'
+}
+
+interface FilterState {
+    searchValue: string,
+    category: string,
+    currentPage: number,
+    sorting: SortingType
+}
+
+const initialState: FilterState = {
     searchValue: '',
     category: "",
     currentPage: 1,
@@ -8,23 +21,23 @@ const initialState = {
         name: "По популярности (по возрастанию)",
         property: "rating"
     }
-}
+} 
 
 export const FilterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        setSearchValue: (state, action) => {
+        setSearchValue: (state, action: PayloadAction<string>) => {
             state.searchValue = action.payload
         },
-        setCategory: (state, action) => {
+        setCategory: (state, action: PayloadAction<string>) => {
             state.category = action.payload
         },
-        setSorting: (state, action) => {
+        setSorting: (state, action: PayloadAction<SortingType>) => {
             state.sorting.name = action.payload.name
             state.sorting.property = action.payload.property
         },
-        setCurrentPage: (state, action) => {
+        setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload
         },
         setFilters: (state, action) => {
@@ -35,7 +48,7 @@ export const FilterSlice = createSlice({
     }
 })
 
-export const selectFilter = (state) => state.filter
-export const selectFilterProperty = (state) => state.filter.sorting.property
+export const selectFilter = (state: RootState) => state.filter
+export const selectFilterProperty = (state: RootState) => state.filter.sorting.property
 export const { setSearchValue, setCategory, setSorting, setCurrentPage, setFilters } = FilterSlice.actions
 export default FilterSlice.reducer

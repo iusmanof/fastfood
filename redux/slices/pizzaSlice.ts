@@ -1,27 +1,48 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store/store";
+import { cartProps } from "../../components/Cart/Cart"
 
-export const fetchPizzas = createAsyncThunk(
+type fetchPizzasType = Record<string, string>
+
+export const fetchPizzas = createAsyncThunk <cartProps, Record<string, string>>(
     'pizza/fetchPizzaStatus',
-    async (params, thunkAPI) => {
+    async (params: fetchPizzasType, thunkAPI) => {
         const { categoryParam,
             sortingParam,
             orderParam,
             pageParam,
             perPageParam } = params
         const { data } = await axios
-            .get(
+            .get<cartProps[]>(
                 `http://localhost:3000/fast-food?category=${categoryParam}&_sort=${sortingParam}&_order=${orderParam}&_page=${pageParam}&_per_page=${perPageParam}`
             )
             
-            if (data.data.length === 0) {
-                return thunkAPI.rejectWithValue('Пиццы пустые')
-            }
-            return thunkAPI.fulfillWithValue(data.data)
+            // if (data.data.length === 0) {
+            //     return thunkAPI.rejectWithValue('Пиццы пустые')
+            // }
+            // return thunkAPI.fulfillWithValue(data.data)
+            return data.data as cartProps;
     }
 )
 
-const initialState = {
+type Pizza = {
+    id: number;
+    title: string;
+    price: number;
+    imgLink: string;
+    size: number[] | string[];
+    type: string[];
+    rating: number;
+  }
+
+  
+interface PizzaSliceState {
+    items:  Pizza[];
+    status: 'loading' | 'successs' | 'error' | ''
+}
+
+const initialState: PizzaSliceState = {
     items: [],
     status: ''
 }
@@ -50,6 +71,6 @@ export const pizzaSlice = createSlice({
     }
 })
 
-export const selectPizza = (state) => state.pizza
+export const selectPizza = (state: RootState) => state.pizza
 export const { setItems } = pizzaSlice.actions
 export default pizzaSlice.reducer

@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction,  createSlice } from "@reduxjs/toolkit"
+import { RootState } from '../store/store'
 
-
-interface cartProps {
+export interface cartProps {
     id: number,
     title: string,
     type: string[],
@@ -25,7 +25,7 @@ export const CartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addFood: (state, action) => {
+        addFood: (state, action: PayloadAction<cartProps>) => {
             const re = state.items.find((o) => o.id === action.payload.id)
 
             if (!re) {
@@ -78,8 +78,8 @@ export const CartSlice = createSlice({
     }
 
 })
-// 5;00
-export const selectCart = (state) => state.cart;
-export const selectCartItemById = (id) => (state) => state.cart.items.find(o => o.id === id)
+
+export const selectCart = (state: RootState) => state.cart;
+export const selectCartItemById = (id: number) => (state: RootState) => state.cart.items.find(o => o.id === id)
 export const { addFood, removeFood, clearCart, incrementFood, decrementFood } = CartSlice.actions
 export default CartSlice.reducer

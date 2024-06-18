@@ -8,7 +8,7 @@ import {
   selectCart,
 } from "../../redux/slices/cartSlice";
 
-interface cartProps {
+export interface cartProps {
   id: number,
   title: string,
   type: string[],
