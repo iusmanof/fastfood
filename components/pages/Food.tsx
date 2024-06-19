@@ -14,7 +14,9 @@ import {
   setFilters,
 } from "../../redux/slices/filterSlice";
 import { useNavigate } from "react-router-dom";
-import { fetchPizzas, selectPizza } from "../../redux/slices/pizzaSlice";
+import { SearchPizzaParams, fetchPizzas, selectPizza } from "../../redux/slices/pizzaSlice";
+import { useAppDispatch } from "../../redux/store/store";
+
 interface FastFoodItemProps {
   id: number;
   title: string;
@@ -24,13 +26,19 @@ interface FastFoodItemProps {
   type: string[];
   rating: number;
 }
+
+interface FastFoodSliceState{
+  sortProperty: string
+  categoryFilter: string
+}
+
 const Food = () => {
   const navigate = useNavigate();
   const { category, currentPage, searchValue } = useSelector(selectFilter);
   const sorting = useSelector(selectFilterProperty);
   const { items, status } = useSelector(selectPizza);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -39,11 +47,10 @@ const Food = () => {
     const categoryParam = category ? category : "";
     const sortingParam = sorting ? sorting.replace("-", "") : "";
     const orderParam = sorting.includes("-") ? "desc" : "asc";
-    const pageParam = currentPage;
-    const perPageParam = 6;
+    const pageParam = currentPage.toString();
+    const perPageParam = "" + 6;
 
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         categoryParam,
         sortingParam,
@@ -71,7 +78,7 @@ const Food = () => {
   // Если был первый рендер то проверяем URL параметры и сохраняем в redux
   useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const params = qs.parse(window.location.search.substring(1)) as SearchPizzaParams;
 
       const sorting =
         sortingList.find((obj) => {
@@ -94,7 +101,7 @@ const Food = () => {
   }, [sorting, searchValue, currentPage, category]);
 
   const pizzasBLock = items
-    .filter((obj: {title: string}) => {
+    .filter((obj: { title: string }) => {
       if (obj.title.toLocaleLowerCase().includes(searchValue.toLowerCase())) {
         return true;
       }
