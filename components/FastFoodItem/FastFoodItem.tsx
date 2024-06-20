@@ -34,8 +34,22 @@ const FastFoodItem: React.FC<FastFoodItemProps> = ({
 
   const addedCount = cartItem ? cartItem.count : 0;
 
-  const onClickButton = (id: number) => {
-    dispatch(addFood(id));
+  const onClickButton = ({id,
+    title,
+    price,
+    imgLink,
+    size,
+    type,
+    rating}: FastFoodItemProps
+    
+  ) => {
+    dispatch(addFood({id,
+      title,
+      price,
+      imgLink,
+      size,
+      type,
+      rating}));
   };
 
   const sizes = (
@@ -96,7 +110,13 @@ const FastFoodItem: React.FC<FastFoodItemProps> = ({
       {sizes}
       {types}
       <p>Rating: {rating}</p>
-      <button onClick={() => onClickButton(id)}>Добавить {addedCount}</button>
+      <button
+        onClick={() =>
+          onClickButton({id, title, price, imgLink, size, type, rating})
+        }
+      >
+        Добавить {addedCount}
+      </button>
     </div>
   );
 };

@@ -5,7 +5,7 @@ export interface cartProps {
     id: number,
     title: string,
     type: string[],
-    size: string[],
+    size: number[] | string[],
     count: number,
     price: number,
     totalItemPrice: number
@@ -26,8 +26,8 @@ export const CartSlice = createSlice({
     initialState,
     reducers: {
         addFood: (state, action: PayloadAction<cartProps>) => {
-            const re = state.items.find((o) => o.id === action.payload.id)
-
+            console.log(action)
+            const re = state.items.find((o) => o.id === action.payload.id);
             if (!re) {
                 state.items.push({ ...action.payload, count: 1, totalItemPrice: action.payload.price })
             } else {
