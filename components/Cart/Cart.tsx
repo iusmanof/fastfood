@@ -7,14 +7,16 @@ import {
   removeFood,
   selectCart,
 } from "../../redux/slices/cartSlice";
+import clsx from "clsx";
+import "./Cart.scss";
 
 export interface cartProps {
-  id: number,
-  title: string,
-  type: string[],
-  size: string[],
-  count: number,
-  totalItemPrice: number
+  id: number;
+  title: string;
+  type: string[];
+  size: string[];
+  count: number;
+  totalItemPrice: number;
 }
 
 const Cart = () => {
@@ -44,7 +46,7 @@ const Cart = () => {
             {i.title} Type: {i.type} Size: {i.size} count: {i.count} Total Food
             price: {i.totalItemPrice}
             <button onClick={() => handleIncrementCount(i.id)}>+</button>{" "}
-            <button onClick={() => handleDecrementCount(i.id)}>-</button>{" "}
+            <button disabled={ i.count === 1 }className={clsx("btn_minus", {"btn_minus-disabled": i.count === 1 })} onClick={() => handleDecrementCount(i.id)}>-</button>{" "}
             <button onClick={() => handleRemoveItem(i.id)}>удалить</button>{" "}
           </li>
         );

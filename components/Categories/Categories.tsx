@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../../redux/slices/filterSlice";
 import "./Categories.scss";
+import { useWhyDidYouUpdate } from 'ahooks';
 
 type categoriesFastFoodType = {
   id: number;
@@ -26,26 +27,38 @@ const categoriesFastFood: categoriesFastFoodType[] = [
   { id: 5, categoryName: "Поп-корн", categoryNameStatus: "popcorn" },
 ];
 
-const CategoryItem: React.FC<CategoryItemProps> = ({
+const CategoryItem: React.FC<CategoryItemProps> = React.memo(({
   categoryName,
   categoryNameStatus,
   categoryCurrentStatus,
   setActive,
 }) => {
   const dispatch = useDispatch();
+  useWhyDidYouUpdate('CategoryItem', {
+    categoryName,
+    categoryNameStatus,
+    categoryCurrentStatus,
+    setActive,
+  })
+
+  const onChangeCategory = React.useCallback(() => {
+    setActive(categoryNameStatus);
+    dispatch(setCategory(categoryNameStatus));
+  }, [])
 
   return (
     <li
       className={categoryCurrentStatus === categoryNameStatus ? "active" : ""}
       onClick={() => {
-        setActive(categoryNameStatus);
-        dispatch(setCategory(categoryNameStatus));
+        // setActive(categoryNameStatus);
+        // dispatch(setCategory(categoryNameStatus));
+        onChangeCategory()
       }}
     >
       {categoryName}
     </li>
   );
-};
+});
 
 const Categories: React.FC = () => {
   const [active, setActive] = useState("");
