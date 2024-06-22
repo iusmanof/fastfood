@@ -1,18 +1,30 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCart } from "../../redux/slices/cartSlice";
+import { selectCart } from "../../redux/slices/cart/selectors";
 import Search from "../Search/";
 import styles from "./Header.module.scss";
-import burger from "../../images/burger1.jpg"
+import burger from "../../images/burger1.jpg";
+import React from "react";
 
 function Header() {
-  const { totalPrice } = useSelector(selectCart);
-  const cartItemsCount = useSelector((state: {cart: { items: [] }}) =>
+  const { items, totalPrice } = useSelector(selectCart);
+  const isMounted = React.useRef(false);
+
+  const cartItemsCount = useSelector((state: { cart: { items: [] } }) =>
     state.cart.items.reduce((sum: number, o: any) => {
       return o.count + sum;
     }, 0)
   );
   const location = useLocation();
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem("cart", json);
+    }
+
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <>

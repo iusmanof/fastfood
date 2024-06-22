@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./FastFoodItem.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { addFood, selectCartItemById } from "../../redux/slices/cartSlice";
+import { addFood, selectCartItemById } from "../../redux/slices/cart/selectors";
 
 interface FastFoodItemProps {
   id: number;

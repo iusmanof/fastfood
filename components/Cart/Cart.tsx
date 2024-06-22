@@ -6,18 +6,11 @@ import {
   decrementFood,
   removeFood,
   selectCart,
-} from "../../redux/slices/cartSlice";
+} from "../../redux/slices/cart/selectors";
 import clsx from "clsx";
 import "./Cart.scss";
+import {ICartProps} from  './type'
 
-export interface cartProps {
-  id: number;
-  title: string;
-  type: string[];
-  size: string[];
-  count: number;
-  totalItemPrice: number;
-}
 
 const Cart = () => {
   const { items, totalPrice } = useSelector(selectCart);
@@ -40,7 +33,7 @@ const Cart = () => {
 
   const itemsCart = (
     <ul>
-      {items.map((i: cartProps) => {
+      {items.map((i: ICartProps) => {
         return (
           <li>
             {i.title} Type: {i.type} Size: {i.size} count: {i.count} Total Food

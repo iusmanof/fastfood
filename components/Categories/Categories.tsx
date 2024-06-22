@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../../redux/slices/filterSlice";
 import "./Categories.scss";
-import { useWhyDidYouUpdate } from 'ahooks';
+// import { useWhyDidYouUpdate } from 'ahooks';
 
 type categoriesFastFoodType = {
   id: number;
@@ -34,12 +34,12 @@ const CategoryItem: React.FC<CategoryItemProps> = React.memo(({
   setActive,
 }) => {
   const dispatch = useDispatch();
-  useWhyDidYouUpdate('CategoryItem', {
-    categoryName,
-    categoryNameStatus,
-    categoryCurrentStatus,
-    setActive,
-  })
+  // useWhyDidYouUpdate('CategoryItem', {
+  //   categoryName,
+  //   categoryNameStatus,
+  //   categoryCurrentStatus,
+  //   setActive,
+  // })
 
   const onChangeCategory = React.useCallback(() => {
     setActive(categoryNameStatus);

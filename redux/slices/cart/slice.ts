@@ -1,31 +1,21 @@
 import { PayloadAction,  createSlice } from "@reduxjs/toolkit"
-import { RootState } from '../store/store'
+import { getCartFromLS } from '../../../utils/getCartFromLS' 
+import { calcTotalPrice } from '../../../utils/calcTotalPrice' 
+import { ICartSliceProps, ICartProps } from '../cart/types'
 
-export interface cartProps {
-    id: number,
-    title: string,
-    type: string[],
-    size: number[] | string[],
-    count: number,
-    price: number,
-    totalItemPrice: number
-}
 
-interface cartSliceProps {
-    totalPrice: number,
-    items: cartProps[]
-}
-
-const initialState: cartSliceProps = {
-    totalPrice: 0,
-    items: []
-}
+const cartData = getCartFromLS();
+const { items, totalPrice } = cartData || { items: [], totalPrice: 0 } as { items: ICartProps[], totalPrice: number };
+const initialState: ICartSliceProps = {
+    totalPrice: totalPrice,
+    items: items,
+};
 
 export const CartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addFood: (state, action: PayloadAction<cartProps>) => {
+        addFood: (state, action: PayloadAction<ICartProps>) => {
             console.log(action)
             const re = state.items.find((o) => o.id === action.payload.id);
             if (!re) {
@@ -52,7 +42,8 @@ export const CartSlice = createSlice({
                     state.totalPrice += el.price
                 }
             })
-
+            
+            state.totalPrice = calcTotalPrice(state.items)
         },
         decrementFood: (state, action) => {
             state.items.map(el => {
@@ -79,7 +70,3 @@ export const CartSlice = createSlice({
 
 })
 
-export const selectCart = (state: RootState) => state.cart;
-export const selectCartItemById = (id: number) => (state: RootState) => state.cart.items.find(o => o.id === id)
-export const { addFood, removeFood, clearCart, incrementFood, decrementFood } = CartSlice.actions
-export default CartSlice.reducer
